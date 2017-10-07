@@ -4,11 +4,16 @@ function ClozeCard (clozeText, clozeBack) {
     this.fullText = this.text + this.back;
 }
 
+function BasicCard (cardFront, cardBack){
+    this.front = cardFront;
+    this.back = cardBack
+}
 
-//Use a prototype to add a method to the full text that throws
-    //an error when the cloze deletion does not appear in the input text
+
+module.exports = {
+    clozeFunction: ClozeCard,
+    basicFunction: BasicCard
+}
 
 
 
-
-module.exports = ClozeCard;

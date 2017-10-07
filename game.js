@@ -17,6 +17,10 @@ inquirer.prompt([
         console.log("You want to create a basic flashcard");
     } else if (optionsResponse.flashcards === "Create a cloze flashcard"){
         console.log("You want to create a cloze flashcard");
+    } else if (optionsResponse.flashcards === "Play flashcard game from built card array"){
+        console.log("You want to play the flashcard game!!!")
+    } else if (optionsResponse.flashcards === "Quit Game"){
+        console.log("Boo, you suck!")
     }
 
 
