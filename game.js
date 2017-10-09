@@ -51,8 +51,10 @@ function createBasicFlashcards (){
             back: response.basicAnswerInput
         }
         //Here: We pushed the card object to the array and will save it to the questions.txt file
-        basicCardArray.push(basicCardObject);
+        basicCardArray.push(basicCardObject);        
+        console.log("=============");
         console.log(basicCardArray);
+        console.log("***************");
         writeItBasic(basicCardArray);
    })
 }
@@ -65,8 +67,7 @@ function createBasicCardsAndWriteToFS(cardFront, cardBack){
         console.log("Please enter an answer for your question");
     } else {
         console.log("front of card: " + cardFront + "\nback of card: " + cardBack);
-        //Add here the part where you will write the questions to the txt file
-    }
+      }
 }
 
 function createClozeFlashcard (){
@@ -103,12 +104,12 @@ function createClozeCardsAndWriteToFS(clozeText, removedPart){
     }
 }
 
-function writeItBasic(){
-    fs.appendFile("questions.txt" + basicCardArray, function(err, data){
+function writeItBasic(basicCardArray){
+      fs.appendFile('questions.txt', + basicCardArray, function(err, data){
         if (err){
             return console.log(err);
-        }
-        console.log("basicTxt was updated");
+        } 
+        console.log("basicTxt was updated");        
     })
 }
 
