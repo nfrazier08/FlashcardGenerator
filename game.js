@@ -1,6 +1,9 @@
 var inquirer = require('inquirer');
 var constructorFunctions = require('./cardFunctions.js');
 var fs = require ("fs");
+var basicCardArray = [];
+var clozeCardArray = [];
+
 
 inquirer.prompt([
     {
@@ -43,7 +46,15 @@ function createBasicFlashcards (){
         }
     ]).then(function(response){
         createBasicCardsAndWriteToFS(response.basicQuestionInput, response.basicAnswerInput);
-    })
+        var basicCardObject = {
+            front: response.basicQuestionInput,
+            back: response.basicAnswerInput
+        }
+        //Here: We pushed the card object to the array and will save it to the questions.txt file
+        basicCardArray.push(basicCardObject);
+        console.log(basicCardArray);
+        writeItBasic(basicCardArray);
+   })
 }
 
 
@@ -75,6 +86,7 @@ function createClozeFlashcard (){
         }
     ]).then(function(response){
         console.log(createClozeCardsAndWriteToFS(response.fullTextInput, response.removedTextInput))
+        
     })
 }
 
@@ -85,5 +97,19 @@ function createClozeCardsAndWriteToFS(clozeText, removedPart){
         console.log("Please enter the part of the phrase that you would like to have removed");
     } else {
         console.log("Full text of the phrase is: " + clozeText + "\nremoved part of the phrase: " + removedPart);
+        clozeCardArray.push(clozeText + ' | ' + removedPart);
+        console.log('Array: ' + clozeCardArray);
+        // writeItCloze(clozeCardArray);        
     }
 }
+
+function writeItBasic(){
+    fs.appendFile("questions.txt" + basicCardArray, function(err, data){
+        if (err){
+            return console.log(err);
+        }
+        console.log("basicTxt was updated");
+    })
+}
+
+

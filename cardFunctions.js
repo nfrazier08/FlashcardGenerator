@@ -1,7 +1,7 @@
 function ClozeCard (clozeText, removedPart) {
     this.text = clozeText;
     this.removed = removedPart;
-    this.fullText = this.text + this.back;
+    this.clozedStructure = this.text.replace(this.removed, "______");
 }
 
 function BasicCard (cardFront, cardBack){
