@@ -1,6 +1,6 @@
-function ClozeCard (clozeText, clozeBack) {
+function ClozeCard (clozeText, removedPart) {
     this.text = clozeText;
-    this.back = clozeBack;
+    this.removed = removedPart;
     this.fullText = this.text + this.back;
 }
 

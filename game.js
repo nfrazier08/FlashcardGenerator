@@ -15,14 +15,75 @@ inquirer.prompt([
 ]).then(function(optionsResponse){
     if(optionsResponse.flashcards === "Create a basic flashcard") {
         console.log("You want to create a basic flashcard");
+        createBasicFlashcards();
     } else if (optionsResponse.flashcards === "Create a cloze flashcard"){
         console.log("You want to create a cloze flashcard");
+        createClozeFlashcard();
     } else if (optionsResponse.flashcards === "Play flashcard game from built card array"){
         console.log("You want to play the flashcard game!!!")
     } else if (optionsResponse.flashcards === "Quit Game"){
         console.log("Boo, you suck!")
     }
-
-
-
 })
+
+function createBasicFlashcards (){
+    var basicQuestion = "Enter your trivia question";
+    var basicAnswer = "Enter the correct answer to your question";
+
+    inquirer.prompt ([
+        {
+            type: 'input',
+            message: basicQuestion,
+            name: 'basicQuestionInput'
+        },
+        {
+            type: 'input',
+            message: basicAnswer,
+            name: 'basicAnswerInput'
+        }
+    ]).then(function(response){
+        createBasicCardsAndWriteToFS(response.basicQuestionInput, response.basicAnswerInput);
+    })
+}
+
+
+function createBasicCardsAndWriteToFS(cardFront, cardBack){
+    if (cardFront === " "){
+        console.log("Please enter a question!");
+    } else if (cardBack === " "){
+        console.log("Please enter an answer for your question");
+    } else {
+        console.log("front of card: " + cardFront + "\nback of card: " + cardBack);
+        //Add here the part where you will write the questions to the txt file
+    }
+}
+
+function createClozeFlashcard (){
+    var fullText = "Enter the full flashcard sentence";
+    var removedText = "Enter the part of the full flashcard sentence that you would like removed";
+
+    inquirer.prompt([
+        {        
+            type: 'input',
+            message: fullText,
+            name: 'fullTextInput'
+        },
+        {
+            type: 'input',
+            message: removedText,
+            name: 'removedTextInput'
+        }
+    ]).then(function(response){
+        console.log(createClozeCardsAndWriteToFS(response.fullTextInput, response.removedTextInput))
+    })
+}
+
+function createClozeCardsAndWriteToFS(clozeText, removedPart){
+    if(clozeText === " "){
+        console.log("Please Enter the full text of your phrase");
+    } else if(removedPart === " "){
+        console.log("Please enter the part of the phrase that you would like to have removed");
+    } else {
+        console.log("Full text of the phrase is: " + clozeText + "\nremoved part of the phrase: " + removedPart);
+    }
+}
