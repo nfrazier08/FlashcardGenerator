@@ -1,1 +1,1 @@
-[object Object][object Object]
+{"front":"what is the best color ever?","back":"seafoam green"}[{"full":"Green tea is the best tea in the world","removed":"Green Tea"}]

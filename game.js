@@ -16,7 +16,7 @@ inquirer.prompt([
         name: "cardChoice",
     }
 ]).then(function(optionsResponse){
-    if(optionsResponse.cardChoice === "Basic Card"){
+   if(optionsResponse.cardChoice === "Basic Card"){
         console.log("You have chosen basic");
         inquirer.prompt([
             {
@@ -43,7 +43,7 @@ inquirer.prompt([
 
             //Save the array to a txt file
         //    fs.appendFile('questions.txt', + JSON.stringify(basicCardArray), function(err, data){
-            fs.appendFile('questions.txt', basicCardArray, function(err, data){
+            fs.appendFile('questions.txt', JSON.stringify(basicCardObject), function(err, data){
                if(err){
                    return console.log(err);
                } console.log("questionsTxt was updated");
@@ -76,12 +76,13 @@ inquirer.prompt([
             console.log(clozeCardArray);
 
             //Save the array to the txt file
-            fs.appendFile('questions.txt', clozeCardArray, function(err, data){
+            fs.appendFile('questions.txt', JSON.stringify(clozeCardArray), function(err, data){
                 if(err){
                     return console.log(err);
                 } console.log("questionsTxt was updated");
              })
         })
-    }
+    }//End of cloze if statement
+    
 }) //End of the big inquirer prompt!!!!
 

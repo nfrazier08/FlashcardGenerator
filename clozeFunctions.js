@@ -5,3 +5,4 @@ function ClozeCard (fullText, removedPart) {
 }
 
 module.exports = ClozeCard;
+console.log("cloze functions")
