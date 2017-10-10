@@ -42,7 +42,8 @@ inquirer.prompt([
             console.log(basicCardArray);
 
             //Save the array to a txt file
-           fs.appendFile('questions.txt', + JSON.stringify(basicCardArray), function(err, data){
+        //    fs.appendFile('questions.txt', + JSON.stringify(basicCardArray), function(err, data){
+            fs.appendFile('questions.txt', basicCardArray, function(err, data){
                if(err){
                    return console.log(err);
                } console.log("questionsTxt was updated");
