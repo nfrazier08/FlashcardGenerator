@@ -50,5 +50,38 @@ inquirer.prompt([
             })
         })         
     } //End of the basicCard if statement
-}) 
+    else if (optionsResponse.cardChoice === "Cloze Card"){
+        console.log("You have chosen cloze card");
+        inquirer.prompt([
+            {
+                type:'input',
+                message: 'Enter the full phrase for your flashcard',
+                name: 'full'
+            },
+            {
+                type:'input',
+                message: 'Enter the portion of the phrase you would like to have removed',
+                name: 'removed'
+            },
+        ]).then(function(clozeResponse){
+            var clozeCardObject = {
+                full: clozeResponse.full,
+                removed: clozeResponse.removed,
+                // clozeStructure: this.text.replace(this.removed, "______"),
+            }
+            console.log(clozeCardObject);
+
+            //Push object to the array
+            clozeCardArray.push(clozeCardObject);
+            console.log(clozeCardArray);
+
+            //Save the array to the txt file
+            fs.appendFile('questions.txt', clozeCardArray, function(err, data){
+                if(err){
+                    return console.log(err);
+                } console.log("questionsTxt was updated");
+             })
+        })
+    }
+}) //End of the big inquirer prompt!!!!
 
